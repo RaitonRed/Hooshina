@@ -17,7 +17,18 @@ def train(model, dataset, epochs=50, batch_size=32, lr=1e-3, device="cpu"):
         progress_bar = tqdm(dataloader, desc=f"Epoch {epoch+1}/{epochs}")
         
         for src, tgt in progress_bar:
-            src, tgt = src.to(device), tgt.to(device)
+            # Check if src and tgt are lists and convert them
+            # This is the corrected part
+            if isinstance(src, list):
+                src = [s.to(device) for s in src]
+            else:
+                src = src.to(device)
+            
+            if isinstance(tgt, list):
+                tgt = [t.to(device) for t in tgt]
+            else:
+                tgt = tgt.to(device)
+
             optimizer.zero_grad()
             output = model(src, tgt[:, :-1])
             loss = criterion(output.reshape(-1, output.size(-1)), tgt[:, 1:].reshape(-1))
