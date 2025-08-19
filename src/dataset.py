@@ -12,6 +12,6 @@ class Dataset(Dataset):
 
     def __getitem__(self, idx):
         row = self.df.iloc[idx]
-        x = self.tokenizer.encode(row["message"], self.max_len)
-        y = self.tokenizer.encode(row["reply_message"], self.max_len)
+        x = self.tokenizer.encode(row["user"], self.max_len)
+        y = self.tokenizer.encode(row["bot"], self.max_len)
         return x, y
