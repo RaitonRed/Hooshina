@@ -1,4 +1,5 @@
 import pandas as pd
+import torch
 from torch.utils.data import Dataset
 
 class Dataset(Dataset):
@@ -12,6 +13,6 @@ class Dataset(Dataset):
 
     def __getitem__(self, idx):
         row = self.df.iloc[idx]
-        x = self.tokenizer.encode(row["user"], self.max_len)
-        y = self.tokenizer.encode(row["bot"], self.max_len)
+        x = torch.tensor(self.tokenizer.encode(row["user"], self.max_len), dtype=torch.long)
+        y = torch.tensor(self.tokenizer.encode(row["bot"], self.max_len), dtype=torch.long)
         return x, y
