@@ -2,6 +2,7 @@ import re
 import pandas as pd
 from tqdm import tqdm
 import logging
+import argparse
 
 # تنظیم لاگر
 logging.basicConfig(
