@@ -7,7 +7,7 @@ import pandas as pd
 
 if __name__ == "__main__":
     # آماده‌سازی دیتاست
-    df = pd.read_csv("data/telegram.csv")
+    df = pd.read_csv("data/proccessed/telegram.csv")
     tokenizer = Tokenizer()
     tokenizer.build_vocab(df["message"].tolist() + df["reply_message"].tolist())
 

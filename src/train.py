@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 from torch import nn, optim
 from tqdm import tqdm
 
-def train(model, dataset, epochs=5, batch_size=32, lr=1e-3, device="cpu"):
+def train(model, dataset, epochs=50, batch_size=32, lr=1e-3, device="cpu"):
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss(ignore_index=0)
